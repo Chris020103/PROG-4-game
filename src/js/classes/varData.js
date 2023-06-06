@@ -10,6 +10,7 @@ export class VarData {
     getCoins(){
         return this.coins;
     }
+
     incrementScore() {
         this.score = this.score + 1;
     }
@@ -28,7 +29,6 @@ export class VarData {
         this.enemies = this.enemies - 1;
     }
     setLifes(amount){
-        console.log('setting de lifes to:' + amount)
         this.lifes = amount
     }
     getLifes(){
@@ -36,7 +36,18 @@ export class VarData {
     }
     removeLife(){
         this.lifes = this.lifes - 1;
-        console.log(this.lifes);
+    }
+
+    getSavedScore(userID){
+        let score;
+        fetch(`/api/getJson.php?id=${userID}`)
+            .then(promise => promise.json())
+            .then((data) => {
+                score = data.score
+            })
+            .catch(error => console.error(error))
+
+        return score;
     }
 
 }

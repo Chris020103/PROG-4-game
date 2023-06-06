@@ -11,7 +11,6 @@ import { VarData } from "./varData.js";
 import { Score } from "./score.js";
 import {LifesLabel} from "./lifesLabel.js";
 import {Endscene} from "./endscene.js";
-import {Startscene} from "./startScene.js";
 export class Game extends ex.Engine {
     amountEnemies = 3;
     wave = 1;
@@ -30,16 +29,9 @@ export class Game extends ex.Engine {
         this.showDebug(true)
         this.debug.transform.showAll = true
 
-        this.startScene = new Startscene(this);
-        this.add('start', this.startScene);
-        this.goToScene('start'); // start with the start scene
-
         this.gameoverScene = new Endscene(this);
         this.add('gameover', this.gameoverScene);
 
-        // create an instance of your main scene and add it to the game engine
-        this.mainScene = new MainScene(this);
-        this.add('main', this.mainScene);
     }
 
     get label() {
@@ -52,9 +44,6 @@ export class Game extends ex.Engine {
     }
 
     startGame() {
-        this.goToScene('main');
-
-
         const background = new Background();
         this.add(background);
 
@@ -111,6 +100,7 @@ export class Game extends ex.Engine {
         if(this.varData.getLifes() <= 0){
             this.goToScene('gameover');
         }
+
     }
     onLabelChange() {
         this.startWave();

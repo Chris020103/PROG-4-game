@@ -49,7 +49,6 @@ export class LifesLabel extends ex.Actor
         this.graphics.use(this.heartAnimations['allHearts']);
     }
     onPreUpdate(_engine, _delta) {
-        console.log(this.varData.getLifes())
         if(this.varData.getLifes() === 2){
             this.graphics.use(this.heartAnimations['twoHearts']);
         }else if (this.varData.getLifes() === 1){
